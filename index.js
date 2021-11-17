@@ -1,4 +1,34 @@
-const cacheStorage= require('./cache')
-const nodeCache=new cacheStorage.setCache(1000)
-nodeCache.setCacheValue(1,"1")
-console.log(nodeCache.getValue(1))
+ class setCache{
+    constructor(timeout=2000){
+        this.timeoutValue=timeout;
+        this.mapCache=new Map();
+        setTimeout(()=>{                            // clear cache after timeout
+            this.mapCache.clear();
+        },this.timeoutValue)
+    } 
+     setCacheValue(key,value){
+         try{
+         this.mapCache.set(key,value)
+         }
+         catch(err){
+
+         }
+    }
+    
+     getValue(key){
+        try{
+        if(this.mapCache.has(key)){
+          return this.mapCache.get(key);
+        }else{
+            return null;
+        }
+
+        }catch(err){
+            
+        }
+    }
+ 
+}
+
+module.exports.setCache =setCache
+
