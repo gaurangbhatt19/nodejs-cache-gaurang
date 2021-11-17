@@ -27,6 +27,9 @@
             
         }
     }
+    cacheCount(){
+        returnthis.mapCache.size()
+    }
  
 }
 
